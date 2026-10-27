@@ -19,6 +19,8 @@ a.game:active{transform:scale(.98)}
 a.game img{width:64px;height:64px;border-radius:16px;flex:none}
 a.game b{display:block;font-size:18px}
 a.game span{color:var(--mut);font-size:14px}
+a.game.board{margin-top:12px;background:linear-gradient(90deg,rgba(255,204,77,.18),rgba(155,107,255,.15));border-color:rgba(255,204,77,.5)}
+a.game .trophy{width:64px;height:64px;border-radius:16px;flex:none;display:grid;place-items:center;font-size:40px;color:inherit;background:rgba(0,0,0,.25)}
 .how{margin-top:24px;padding:16px;border-radius:18px;background:rgba(255,255,255,.04);border:1px solid var(--line);font-size:15px;line-height:1.5}
 .how h2{margin:0 0 6px;font-size:17px;color:var(--gold)}
 .how p{margin:6px 0}
@@ -35,6 +37,7 @@ a.game span{color:var(--mut);font-size:14px}
     <a class="game" href="/Claude/hoop-shot/"><img src="icons/hoop-shot.png" alt=""><div><b>Hoop Shot</b><span>Pull back, aim and shoot</span></div></a>
     <a class="game" href="/Claude/echo-wheel/"><img src="icons/echo-wheel.png" alt=""><div><b>Echo Wheel</b><span>Watch the colours, then repeat them</span></div></a>
   </div>
+  <a class="game board" href="/Claude/leaderboard/"><span class="trophy">🏆</span><div><b>Family Leaderboard</b><span>Everyone's best scores, and who's the Family Champion</span></div></a>
   <div class="how">
     <h2>📲 Put a game on your home screen</h2>
     <p><b>Android:</b> open the game in Chrome, tap <b>⋮</b>, then <b>Install app</b> (or <b>Add to Home screen</b>).</p>
