@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#120a24">
+<title>Family Games</title>
+<link rel="icon" type="image/png" href="icons/card-battler.png">
+<style>
+:root{--bg:#120a24;--ink:#f5ecff;--mut:#b9a8d6;--line:rgba(255,255,255,.13);--gold:#ffcc4d}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 50% -10%,#3a1d6e,#120a24 65%) fixed;background-color:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:560px;margin:0 auto;padding:28px 16px calc(32px + env(safe-area-inset-bottom))}
+h1{margin:0;text-align:center;font-size:clamp(30px,9vw,44px);letter-spacing:.5px;background:linear-gradient(180deg,#fff6d0,#ffcc4d 55%,#d9831a);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{text-align:center;color:var(--mut);margin:6px 0 22px}
+.games{display:grid;gap:12px}
+a.game{display:flex;align-items:center;gap:14px;padding:12px;border-radius:18px;background:rgba(255,255,255,.06);border:1px solid var(--line);color:inherit;text-decoration:none}
+a.game:active{transform:scale(.98)}
+a.game img{width:64px;height:64px;border-radius:16px;flex:none}
+a.game b{display:block;font-size:18px}
+a.game span{color:var(--mut);font-size:14px}
+.how{margin-top:24px;padding:16px;border-radius:18px;background:rgba(255,255,255,.04);border:1px solid var(--line);font-size:15px;line-height:1.5}
+.how h2{margin:0 0 6px;font-size:17px;color:var(--gold)}
+.how p{margin:6px 0}
+</style>
+</head>
+<body>
+<main>
+  <h1>Family Games</h1>
+  <p class="sub">Tap a game to play. Add it to your home screen to keep it like an app.</p>
+  <div class="games">
+    <a class="game" href="/Claude/card-battler/"><img src="icons/card-battler.png" alt=""><div><b>Card Battler</b><span>Fantasy card battles, 2 to 6 players on their own phones</span></div></a>
+    <a class="game" href="/Claude/scoot-city/"><img src="icons/scoot-city.png" alt=""><div><b>Scoot City</b><span>Ride your scooter through the city</span></div></a>
+    <a class="game" href="/Claude/chess/"><img src="icons/chess.png" alt=""><div><b>Skirmish Chess</b><span>3D chess against the computer or a friend</span></div></a>
+    <a class="game" href="/Claude/hoop-shot/"><img src="icons/hoop-shot.png" alt=""><div><b>Hoop Shot</b><span>Pull back, aim and shoot</span></div></a>
+    <a class="game" href="/Claude/echo-wheel/"><img src="icons/echo-wheel.png" alt=""><div><b>Echo Wheel</b><span>Watch the colours, then repeat them</span></div></a>
+  </div>
+  <div class="how">
+    <h2>📲 Put a game on your home screen</h2>
+    <p><b>Android:</b> open the game in Chrome, tap <b>⋮</b>, then <b>Install app</b> (or <b>Add to Home screen</b>).</p>
+    <p><b>iPhone:</b> open the game in Safari, tap <b>Share</b>, then <b>Add to Home Screen</b>.</p>
+  </div>
+</main>
+</body>
+</html>
