@@ -24,7 +24,7 @@ a.game:active{transform:scale(.98)}
 a.game img{width:64px;height:64px;border-radius:16px;flex:none}
 a.game b{display:block;font-size:18px}
 a.game span{color:var(--mut);font-size:14px}
-a.game.board{margin-top:12px;background:linear-gradient(90deg,rgba(255,204,77,.18),rgba(155,107,255,.15));border-color:rgba(255,204,77,.5)}
+a.game.board{margin-bottom:12px;background:linear-gradient(90deg,rgba(255,204,77,.18),rgba(155,107,255,.15));border-color:rgba(255,204,77,.5)}
 a.game .trophy{width:64px;height:64px;border-radius:16px;flex:none;display:grid;place-items:center;font-size:40px;color:inherit;background:rgba(0,0,0,.25)}
 .how{margin-top:24px;padding:16px;border-radius:18px;background:rgba(255,255,255,.04);border:1px solid var(--line);font-size:15px;line-height:1.5}
 .how h2{margin:0 0 6px;font-size:17px;color:var(--gold)}
@@ -36,6 +36,7 @@ a.game .trophy{width:64px;height:64px;border-radius:16px;flex:none;display:grid;
 <main>
   <h1>Family Games</h1>
   <p class="sub">Tap a game to play. Add it to your home screen to keep it like an app.</p>
+  <a class="game board" href="/Claude/leaderboard/"><span class="trophy">🏆</span><div><b>Family Leaderboard</b><span>Everyone's best scores, and who's the Family Champion</span></div></a>
   <div class="games">
     <a class="game" href="/Claude/card-battler/"><img src="icons/card-battler.png" alt=""><div><b>Card Battler</b><span>Fantasy card battles, 2 to 6 players on their own phones</span></div></a>
     <a class="game" href="/Claude/scoot-city/"><img src="icons/scoot-city.png" alt=""><div><b>Scoot City</b><span>Ride your scooter through the city</span></div></a>
@@ -47,7 +48,6 @@ a.game .trophy{width:64px;height:64px;border-radius:16px;flex:none;display:grid;
     <a class="game" href="/Claude/snap-race/"><img src="icons/snap-race.png" alt=""><div><b>Snap Race</b><span>Same picture twice? Hit SNAP first!</span></div></a>
     <a class="game" href="/Claude/times-tables/"><img src="icons/times-tables.png" alt=""><div><b>Times Table Blaster</b><span>Blast asteroids with your times tables and earn stars</span></div></a>
   </div>
-  <a class="game board" href="/Claude/leaderboard/"><span class="trophy">🏆</span><div><b>Family Leaderboard</b><span>Everyone's best scores, and who's the Family Champion</span></div></a>
   <div class="how">
     <h2>📲 Get every game as one app</h2>
     <p id="installRow" hidden><button class="act" id="installBtn">⬇️ Install Family Games</button></p>
