@@ -35,6 +35,7 @@ EASY TO PICK UP
 • Matches last about a minute, or take a quick result
 
 ENOUGH DEPTH TO KEEP YOU HOOKED
+• Quick-fire dilemmas all season: broken tea urns in the lower leagues, takeover bids at the top. Your answers sway the fans, the players and the board
 • Six formations and six playing styles that beat each other like rock-paper-scissors
 • Half-time team talks, substitutions and tactics changes during the game
 • Training focus and intensity, and young players who grow into stars
