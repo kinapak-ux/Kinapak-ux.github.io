@@ -44,6 +44,9 @@ ENOUGH DEPTH TO KEEP YOU HOOKED
 • Promotion, relegation, the Old Tin Cup, youth intakes and job offers from other clubs
 
 PLUS
+• Scout players, compare them with your own and take youngsters on loan
+• Goal celebrations, match highlights and a trophy-lift party when you win something
+• Chiptune music, three save slots and 25 achievements
 • An arcade mode with keepy-uppy, a free-kick challenge and penalty shoot-outs
 • Works offline
 • No adverts, no in-app purchases, no accounts, no data collected
