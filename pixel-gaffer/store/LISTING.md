@@ -41,6 +41,7 @@ ENOUGH DEPTH TO KEEP YOU HOOKED
 • Training focus and intensity, and young players who grow into stars
 • Haggle with chairmen over transfers, but don't push them too far
 • Contracts, wages, ticket prices and a board with a target for you to hit
+• New cups as you climb: the Pixel Vase, the Floodlit Cup and, in the Premier Division, European nights against the best of the continent
 • Promotion, relegation, the Old Tin Cup, youth intakes and job offers from other clubs
 
 PLUS
