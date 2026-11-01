@@ -39,6 +39,7 @@ ENOUGH DEPTH TO KEEP YOU HOOKED
 • Six formations and six playing styles that beat each other like rock-paper-scissors
 • Half-time team talks, substitutions and tactics changes during the game
 • Training focus and intensity, and young players who grow into stars
+• Transfer deadline day: five frantic deals against the clock before the window slams shut
 • Haggle with chairmen over transfers, but don't push them too far
 • Contracts, wages, ticket prices and a board with a target for you to hit
 • New cups as you climb: the Pixel Vase, the Floodlit Cup and, in the Premier Division, European nights against the best of the continent
