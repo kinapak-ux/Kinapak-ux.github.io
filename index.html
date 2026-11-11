@@ -62,7 +62,12 @@ a.game .trophy{width:64px;height:64px;border-radius:16px;flex:none;display:grid;
   </div>
 </main>
 <script>
-if ('serviceWorker' in navigator) addEventListener('load', () => navigator.serviceWorker.register('/sw.js').catch(() => {}));
+if ('serviceWorker' in navigator) addEventListener('load', () => {
+  navigator.serviceWorker.register('/sw.js').catch(() => {});
+  // Backgammon and Go: start their offline helper from here, so they work with no signal
+  // even if they've never been opened on this phone. It saves the game the moment it's set up.
+  navigator.serviceWorker.register('/Claude/board-school/sw.js').catch(() => {});
+});
 let installEvt = null;
 addEventListener('beforeinstallprompt', e => { e.preventDefault(); installEvt = e; document.getElementById('installRow').hidden = false; });
 addEventListener('appinstalled', () => { document.getElementById('installRow').hidden = true; });
