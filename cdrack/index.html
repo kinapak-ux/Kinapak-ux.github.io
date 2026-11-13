@@ -10,9 +10,9 @@
 :root{--bg:#16120e;--wood1:#7a5532;--wood2:#4b3220;--ink:#f4ede4;--muted:#b9ab9a;--accent:#e8b04a}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
-body{padding-bottom:110px}
+
 button{font:inherit;color:inherit}
-header{position:sticky;top:0;z-index:5;background:#16120e;box-shadow:0 8px 12px -6px rgba(0,0,0,.8);padding:calc(10px + env(safe-area-inset-top)) 14px 10px}
+header{flex:0 0 auto;z-index:5;background:#16120e;box-shadow:0 8px 12px -6px rgba(0,0,0,.8);padding:calc(10px + env(safe-area-inset-top)) 14px 10px}
 h1{margin:0 0 8px;font-size:22px;letter-spacing:7px;font-weight:800}
 h1 small{font-size:11px;letter-spacing:1px;color:var(--muted);font-weight:500;margin-left:6px}
 .row{display:flex;gap:8px;align-items:center}
@@ -20,25 +20,59 @@ h1 small{font-size:11px;letter-spacing:1px;color:var(--muted);font-weight:500;ma
 .tabs button.on{background:var(--ink);color:#16120e;border-color:var(--ink);font-weight:700}
 .search{flex:1;min-width:0;background:#2a231c;border:1px solid #3b3128;border-radius:20px;padding:9px 14px;color:var(--ink);font-size:15px;outline:none}
 .icon{background:none;border:none;font-size:20px;padding:6px 8px;cursor:pointer}
-.az{display:flex;gap:2px;overflow-x:auto;margin-top:8px;scrollbar-width:none}
+.az{display:flex;gap:2px;overflow-x:auto;padding:0 10px;scrollbar-width:none}
 .az::-webkit-scrollbar{display:none}
 .az a{flex:0 0 auto;color:var(--muted);text-decoration:none;font-size:13px;padding:4px 6px;font-weight:700}
-.rack{padding:4px 0 10px}
-.shelf{margin:22px 0 0;position:relative}
-.shelf .lbl{position:absolute;left:12px;top:-18px;font-size:12px;font-weight:800;color:var(--accent);letter-spacing:2px}
-.spines{display:flex;align-items:flex-end;gap:2px;overflow-x:auto;padding:22px 14px 0;height:206px;scrollbar-width:none;scroll-snap-type:x proximity}
-.spines::-webkit-scrollbar{display:none}
-.plank{height:14px;margin:0 6px;background:linear-gradient(var(--wood1),var(--wood2));border-radius:2px;box-shadow:0 6px 10px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.18)}
-.spine{flex:0 0 auto;height:178px;border:none;border-radius:2px;padding:6px 0;cursor:pointer;position:relative;
+.layout{display:flex;flex-direction:column;height:100vh;height:100dvh;overflow:hidden}
+.row2{display:flex;gap:8px;align-items:center}
+.stage{flex:1;min-height:0;position:relative;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;padding:0 14px 6px;text-align:center}
+.hint{position:absolute;top:40%;left:0;right:0;transform:translateY(-50%);color:var(--muted);font-size:15px;line-height:1.6;pointer-events:auto}
+.info .it{font-size:19px;font-weight:800;line-height:1.2;max-width:90vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.info .ia{font-size:14px;color:var(--muted);margin-top:2px}
+.info .btn{padding:10px 16px}
+.shelfwrap{position:relative;flex:0 0 auto;height:262px}
+.track{position:absolute;left:0;right:0;top:0;bottom:14px;overflow-x:scroll;overflow-y:hidden;touch-action:none;scrollbar-width:none;cursor:grab;user-select:none;-webkit-user-select:none}
+.track::-webkit-scrollbar{display:none}
+.track .row{display:flex;align-items:flex-end;height:100%;gap:2px;padding:0 50vw 0 16px;width:max-content}
+.divider{flex:0 0 auto;width:22px;height:226px;margin:0 6px;border-radius:6px 6px 0 0;background:linear-gradient(#3a2f24,#2a231c);border:1px solid #4a3d30;border-bottom:none;
+  color:var(--accent);font-weight:800;font-size:13px;text-align:center;padding-top:6px}
+.spine.lift{transform:translateY(-12px)}
+.spine.now{outline:2px solid var(--accent);outline-offset:1px}
+.spine.now:before{content:"▶ ";color:var(--accent)}
+.spine.gone{visibility:hidden}
+.spine{flex:0 0 auto;height:200px;border-radius:2px;padding:7px 0;position:relative;transition:transform .12s ease;
   writing-mode:vertical-rl;text-orientation:mixed;font-size:11.5px;line-height:1.15;text-align:left;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;
-  box-shadow:inset 2px 0 0 rgba(255,255,255,.25),inset -2px 0 0 rgba(0,0,0,.35),0 2px 3px rgba(0,0,0,.5);transition:transform .25s ease;scroll-snap-align:start}
+  box-shadow:inset 2px 0 0 rgba(255,255,255,.25),inset -2px 0 0 rgba(0,0,0,.35),0 2px 3px rgba(0,0,0,.5)}
 .spine:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(255,255,255,.18),rgba(255,255,255,0) 35%,rgba(0,0,0,.15));pointer-events:none}
 .spine b{font-weight:800;letter-spacing:.8px}
-.spine.out{transform:translateY(-20px);outline:2px solid var(--accent);outline-offset:1px}
-.spine.out:before{content:"▶ ";color:var(--accent)}
-.empty{margin:30px 16px;color:var(--muted);line-height:1.5}
+.plank{position:absolute;left:0;right:0;bottom:0;height:14px;background:linear-gradient(var(--wood1),var(--wood2));box-shadow:0 6px 10px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.18)}
+/* 3D jewel case */
+.show3d{position:fixed;inset:0;pointer-events:none;perspective:1100px;z-index:15}
+.show3d .pos{position:absolute;left:0;top:0;transform-style:preserve-3d;transform-origin:50% 50%;transition:transform .55s cubic-bezier(.2,.8,.2,1)}
+.show3d .box{position:relative;transform-style:preserve-3d;transition:transform .55s cubic-bezier(.2,.8,.2,1)}
+.show3d .box.sway{animation:sway 4s ease-in-out infinite alternate}
+@keyframes sway{from{transform:rotateY(-22deg) rotateX(6deg)}to{transform:rotateY(-8deg) rotateX(3deg)}}
+.f{position:absolute;left:0;top:0;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.f.front{border-radius:2px;box-shadow:0 0 0 1px rgba(255,255,255,.25) inset}
+.f.front .hinge{position:absolute;left:0;top:0;bottom:0;width:7%;background:linear-gradient(90deg,rgba(0,0,0,.55),rgba(255,255,255,.12) 60%,rgba(0,0,0,.25))}
+.f.front .gloss{position:absolute;inset:0;background:linear-gradient(115deg,rgba(255,255,255,.35) 0%,rgba(255,255,255,0) 30%,rgba(255,255,255,0) 60%,rgba(255,255,255,.12) 75%,rgba(255,255,255,0) 90%)}
+.f .phart{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:64px;font-weight:900;letter-spacing:2px}
+.f.back{background:#1d1d1d}
+.f.side{writing-mode:vertical-rl;font-size:11.5px;line-height:1.15;padding:6px 0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.f.clear{background:rgba(220,230,240,.12)}
+.f.cap{background:rgba(220,230,240,.22)}
+.disc{position:absolute;border-radius:50%;transform:translateZ(0);transition:transform .7s cubic-bezier(.2,.8,.2,1);
+  -webkit-mask:radial-gradient(circle,transparent 0 6.5%,#000 7%);mask:radial-gradient(circle,transparent 0 6.5%,#000 7%)}
+.disc.out{transform:translateX(42%)}
+.discart{position:absolute;inset:0;border-radius:50%;background-size:cover;background-position:center;animation:spin 3.2s linear infinite;
+  box-shadow:0 0 0 3px rgba(210,215,222,.9) inset,0 4px 14px rgba(0,0,0,.5)}
+.discart:after{content:"";position:absolute;inset:0;border-radius:50%;
+  background:radial-gradient(circle,rgba(230,232,236,.95) 0 15%,rgba(0,0,0,.25) 15.5% 16.5%,transparent 17%),
+  conic-gradient(rgba(255,255,255,.35),rgba(255,255,255,0) 12%,rgba(255,255,255,.28) 25%,rgba(255,255,255,0) 40%,rgba(255,255,255,.35) 55%,rgba(255,255,255,0) 70%,rgba(255,255,255,.28) 85%,rgba(255,255,255,.35))}
+@keyframes spin{to{transform:rotate(360deg)}}
+.empty{position:absolute;top:40%;left:16px;right:16px;color:var(--muted)}
 /* mini player */
-.mini{position:fixed;left:8px;right:8px;bottom:calc(8px + env(safe-area-inset-bottom));z-index:8;background:#2a231c;border:1px solid #3b3128;border-radius:14px;
+.mini{position:relative;margin:4px 8px calc(8px + env(safe-area-inset-bottom));z-index:8;background:#2a231c;border:1px solid #3b3128;border-radius:14px;
   display:flex;align-items:center;gap:10px;padding:8px;box-shadow:0 8px 24px rgba(0,0,0,.6)}
 .mini img,.mini .ph{width:52px;height:52px;border-radius:6px;flex:0 0 auto;object-fit:cover}
 .mini .txt{flex:1;min-width:0;cursor:pointer}
@@ -307,15 +341,23 @@ const SPINE_COLOURS = [
   ["#2f5d50", "#f2ece1"], ["#6d597a", "#fff"], ["#d9d4c7", "#7a1f1f"], ["#3d3d3d", "#e8b04a"], ["#c66b3d", "#fff"],
   ["#8fb3c9", "#111"], ["#5b4636", "#f2ece1"]
 ];
-function spine(item) {
+const SPINE_H = 200;            // spine height in px on the shelf
+const SWIPE_SPEED = 2.2;        // shelf moves this many px per px of finger travel
+const HOLD_MS = 260;            // hold still this long on a CD to pull it out
+function spineLook(item) {
   const x = hash(item.id), [bg, fg] = SPINE_COLOURS[x % SPINE_COLOURS.length];
   let w = 26 + (x >> 5) % 10; if (item.count > 22) w += 14;   // double albums are fatter
+  return { bg, fg, w };
+}
+function spineLabel(item) {
   const label = item.kind === "playlist" ? item.name : item.artist;
   const sub = item.kind === "playlist" ? "mixtape" : item.name;
-  const el = h("button", { class: "spine", style: `width:${w}px;background:${bg};color:${fg}`, "data-uri": item.uri,
-    title: `${item.artist} - ${item.name}`, onclick: () => openCase(item) },
-    h("b", null, label.toUpperCase()), "  ·  ", sub);
-  return el;
+  return [h("b", null, label.toUpperCase()), "  ·  ", sub];
+}
+function spine(item, idx) {
+  const { bg, fg, w } = spineLook(item);
+  return h("div", { class: "spine", style: `width:${w}px;background:${bg};color:${fg}`, "data-uri": item.uri, "data-idx": idx,
+    title: `${item.artist} - ${item.name}` }, spineLabel(item));
 }
 function groupKey(item) {
   const c = sortKey(S.tab === "playlists" ? item.name : item.artist).charAt(0).toUpperCase();
@@ -327,29 +369,191 @@ function currentItems() {
   return f ? items.filter(i => (i.name + " " + i.artist).toLowerCase().includes(f)) : items;
 }
 function renderRack() {
-  const rack = $("#rack"); if (!rack) return;
-  rack.textContent = "";
-  const items = currentItems();
-  const groups = new Map();
-  for (const it of items) { const k = groupKey(it); if (!groups.has(k)) groups.set(k, []); groups.get(k).push(it); }
+  const row = $("#row"); if (!row) return;
+  Showcase.dismiss(true);
+  row.textContent = "";
+  const items = currentItems(); S.shown = items;
   const az = $("#az"); az.textContent = "";
-  for (const [k, list] of groups) {
-    az.append(h("a", { href: "#shelf-" + k, onclick: (e) => { e.preventDefault(); document.getElementById("shelf-" + k).scrollIntoView({ behavior: "smooth", block: "center" }); } }, k));
-    rack.append(h("div", { class: "shelf", id: "shelf-" + k }, h("div", { class: "lbl" }, k), h("div", { class: "spines" }, list.map(spine)), h("div", { class: "plank" })));
-  }
-  if (!items.length) rack.append(h("div", { class: "empty" }, S.filter ? "No CDs match that search." :
-    S.tab === "playlists" ? "No playlists yet." : "Your rack is empty. Save some albums in Spotify (tap + on an album page), then pull down the menu and tap Reload."));
+  let last = null;
+  items.forEach((it, i) => {
+    const k = groupKey(it);
+    if (k !== last) {
+      last = k;
+      row.append(h("div", { class: "divider", id: "div-" + k }, k));
+      az.append(h("a", { href: "#", onclick: (e) => { e.preventDefault(); Shelf.scrollToEl(document.getElementById("div-" + k), false); } }, k));
+    }
+    row.append(spine(it, i));
+  });
+  const empty = $("#empty");
+  empty.textContent = items.length ? "" : (S.filter ? "No CDs match that search." :
+    S.tab === "playlists" ? "No playlists yet." : "Your rack is empty. Save some albums in Spotify, then open the menu and tap Reload.");
+  $("#hint").style.display = items.length ? "" : "none";
+  Shelf.track.scrollLeft = 0;
   markPlaying();
 }
 function markPlaying() {
-  document.querySelectorAll(".spine.out").forEach(s => s.classList.remove("out"));
+  document.querySelectorAll(".spine.now").forEach(s => s.classList.remove("now"));
   const p = S.player; if (!p || !p.context) return;
   const el = document.querySelector(`.spine[data-uri="${CSS.escape(p.context)}"]`);
   if (el) {
-    el.classList.add("out");
-    if (!S.scrolledToNow) { S.scrolledToNow = true; el.scrollIntoView({ block: "center", inline: "center" }); }
+    el.classList.add("now");
+    if (!S.scrolledToNow) { S.scrolledToNow = true; Shelf.scrollToEl(el, true); }
   }
 }
+
+/* ---------- the shelf: fast swipe with momentum, hold to pull a CD out ---------- */
+const Shelf = {
+  track: null, lifted: null,
+  init(track) {
+    this.track = track;
+    let down = false, lastX = 0, lastT = 0, v = 0, startX = 0, startY = 0, moved = 0, holdTimer = null, anchorX = 0, pulledHere = false, raf = null;
+    const stopGlide = () => { if (raf) cancelAnimationFrame(raf); raf = null; };
+    const spineAt = (x, y) => { const el = document.elementFromPoint(x, y); return el && el.closest(".spine"); };
+    const armHold = (x, y) => {
+      clearTimeout(holdTimer);
+      anchorX = x;
+      holdTimer = setTimeout(() => {
+        const sp = spineAt(x, y) || this.nearest(x);
+        if (sp) { pulledHere = true; this.lift(null); Showcase.pull(sp); }
+      }, HOLD_MS);
+    };
+    track.addEventListener("pointerdown", (e) => {
+      down = true; stopGlide(); track.setPointerCapture(e.pointerId);
+      lastX = startX = e.clientX; startY = e.clientY; lastT = performance.now(); v = 0; moved = 0; pulledHere = false;
+      this.lift(spineAt(e.clientX, e.clientY));
+      armHold(e.clientX, e.clientY);
+    });
+    track.addEventListener("pointermove", (e) => {
+      if (!down) return;
+      const now = performance.now(), dx = e.clientX - lastX, dt = Math.max(1, now - lastT);
+      moved += Math.abs(dx);
+      if (Showcase.held && Math.abs(e.clientX - anchorX) > 28) { Showcase.dismiss(); pulledHere = false; }
+      if (!Showcase.held) {
+        track.scrollLeft -= dx * SWIPE_SPEED;
+        v = 0.8 * (dx * SWIPE_SPEED / dt) + 0.2 * v;
+        this.lift(spineAt(e.clientX, e.clientY));
+      }
+      if (Math.abs(e.clientX - anchorX) > 6) armHold(e.clientX, e.clientY);
+      lastX = e.clientX; lastT = now;
+    });
+    const end = (e) => {
+      if (!down) return; down = false; clearTimeout(holdTimer); this.lift(null);
+      if (Showcase.held) { Showcase.release(); return; }          // CD stays out with buttons
+      if (moved < 8 && !pulledHere) {                              // a tap
+        const sp = spineAt(e.clientX, e.clientY);
+        if (sp) Showcase.pull(sp, true); else Showcase.dismiss();
+        return;
+      }
+      if (performance.now() - lastT > 80) v = 0;                   // finger stopped before lifting
+      let prev = performance.now();
+      const glide = (t) => {
+        const dt = t - prev; prev = t;
+        track.scrollLeft -= v * dt;
+        v *= Math.pow(0.95, dt / 16);
+        if (Math.abs(v) > 0.03) raf = requestAnimationFrame(glide); else raf = null;
+      };
+      if (Math.abs(v) > 0.1) raf = requestAnimationFrame(glide);
+    };
+    track.addEventListener("pointerup", end);
+    track.addEventListener("pointercancel", end);
+    track.addEventListener("wheel", (e) => { e.preventDefault(); track.scrollLeft += (e.deltaY + e.deltaX) * 1.5; }, { passive: false });
+  },
+  lift(el) {
+    if (this.lifted === el) return;
+    if (this.lifted) this.lifted.classList.remove("lift");
+    this.lifted = el; if (el) el.classList.add("lift");
+  },
+  nearest(x) {
+    let best = null, bd = 1e9;
+    for (const s of this.track.querySelectorAll(".spine")) { const r = s.getBoundingClientRect(), d = Math.abs(r.left + r.width / 2 - x); if (d < bd) { bd = d; best = s; } }
+    return best;
+  },
+  scrollToEl(el, instant) {
+    if (!el) return;
+    const tr = this.track, target = el.offsetLeft - tr.clientWidth / 2 + el.offsetWidth / 2;
+    if (instant) { tr.scrollLeft = target; return; }
+    const from = tr.scrollLeft, t0 = performance.now(), dur = 450;
+    const step = (t) => { const k = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - k, 3); tr.scrollLeft = from + (target - from) * e; if (k < 1) requestAnimationFrame(step); };
+    requestAnimationFrame(step);
+  }
+};
+
+/* ---------- the pulled-out jewel case (3D) ---------- */
+const Showcase = {
+  el: null, item: null, spineEl: null, held: false,
+  pull(sp, fromTap) {
+    const item = S.shown[+sp.dataset.idx]; if (!item) return;
+    if (this.item === item && this.el) { if (fromTap) openCase(item); return; }
+    this.dismiss(true);
+    if (navigator.vibrate) try { navigator.vibrate(12); } catch {}
+    this.item = item; this.spineEl = sp; this.held = !fromTap;
+    const { bg, fg, w } = spineLook(item);
+    const H = SPINE_H, W = Math.round(H * 1.12), D = w;
+    const face = (cls, style, ...kids) => h("div", { class: "f " + cls, style }, ...kids);
+    const cover = item.img ? `background:#222 url('${item.img.replace(/'/g, "%27")}') center/cover` : `background:${bg}`;
+    const disc = h("div", { class: "disc", style: `width:${H * .9}px;height:${H * .9}px;left:${(W - H * .9) / 2}px;top:${H * .05}px` },
+      h("div", { class: "discart", style: item.img ? `background-image:url('${item.img.replace(/'/g, "%27")}')` : `background:${bg}` }));
+    const box = h("div", { class: "box", style: `width:${W}px;height:${H}px` },
+      disc,
+      face("front", `width:${W}px;height:${H}px;${cover};transform:translateZ(${D / 2}px)`,
+        item.img ? null : h("div", { class: "phart", style: `color:${fg}` }, initials(item.name)), h("div", { class: "hinge" }), h("div", { class: "gloss" })),
+      face("back", `width:${W}px;height:${H}px;transform:rotateY(180deg) translateZ(${D / 2}px)`),
+      face("side spineface", `width:${D}px;height:${H}px;left:${(W - D) / 2}px;background:${bg};color:${fg};transform:rotateY(-90deg) translateZ(${W / 2}px)`, spineLabel(item)),
+      face("side clear", `width:${D}px;height:${H}px;left:${(W - D) / 2}px;transform:rotateY(90deg) translateZ(${W / 2}px)`),
+      face("cap", `width:${W}px;height:${D}px;top:${(H - D) / 2}px;transform:rotateX(90deg) translateZ(${H / 2}px)`),
+      face("cap", `width:${W}px;height:${D}px;top:${(H - D) / 2}px;transform:rotateX(-90deg) translateZ(${H / 2}px)`));
+    const pos = h("div", { class: "pos" }, box);
+    this.el = h("div", { class: "show3d" }, pos); document.body.append(this.el);
+    this.geom = { W, H, D };
+    // start: exactly where the spine sits, spine facing us
+    const r = sp.getBoundingClientRect();
+    pos.style.transform = `translate3d(${r.left + r.width / 2 - W / 2}px,${r.top}px,${-W / 2}px)`;
+    box.style.transform = "rotateY(90deg)";
+    sp.classList.add("gone");
+    // end: up on the stage, turned to show the cover
+    const st = $("#stage").getBoundingClientRect();
+    const room = st.height - 130;
+    const s = Math.max(0.6, Math.min(room / H, (innerWidth * 0.62) / W, 1.7));
+    const cx = innerWidth / 2 - W * s * 0.14, cy = st.top + 12 + room / 2;
+    pos.getBoundingClientRect(); // commit start state
+    requestAnimationFrame(() => {
+      pos.style.transform = `translate3d(${cx - W / 2}px,${cy - H / 2}px,0) scale(${s})`;
+      box.style.transform = "rotateY(-22deg) rotateX(6deg)";
+    });
+    this.t1 = setTimeout(() => { box.classList.add("sway"); disc.classList.add("out"); }, 560);
+    this.showInfo(item);
+  },
+  release() { this.held = false; },
+  showInfo(item) {
+    const info = $("#info"); info.textContent = ""; $("#hint").style.display = "none";
+    info.append(h("div", { class: "it" }, item.name), h("div", { class: "ia" }, item.artist + (item.year ? " · " + item.year : "")),
+      h("div", { class: "btns", style: "justify-content:center;margin:10px 0 0" },
+        h("button", { class: "btn primary", onclick: () => play(item.uri, null, false) }, "▶  Play"),
+        h("button", { class: "btn", onclick: () => play(item.uri, null, true) }, "⇄"),
+        h("button", { class: "btn", onclick: () => openCase(item) }, "Tracks"),
+        h("button", { class: "btn", onclick: () => this.dismiss() }, "✕")));
+  },
+  dismiss(instant) {
+    clearTimeout(this.t1);
+    const el = this.el, sp = this.spineEl;
+    this.el = null; this.item = null; this.spineEl = null; this.held = false;
+    const info = $("#info"); if (info) info.textContent = "";
+    const hint = $("#hint"); if (hint && S.shown && S.shown.length) hint.style.display = "";
+    if (!el) return;
+    const done = () => { el.remove(); if (sp) sp.classList.remove("gone"); };
+    if (instant || !sp || !sp.isConnected) return done();
+    const pos = el.firstChild, box = pos.firstChild, { W } = this.geom || { W: 224 };
+    box.classList.remove("sway"); box.querySelector(".disc").classList.remove("out");
+    const r = sp.getBoundingClientRect();
+    if (r.right < 0 || r.left > innerWidth) { el.style.transition = "opacity .25s"; el.style.opacity = 0; return setTimeout(done, 260); }
+    setTimeout(() => {
+      pos.style.transform = `translate3d(${r.left + r.width / 2 - W / 2}px,${r.top}px,${-W / 2}px)`;
+      box.style.transform = "rotateY(90deg)";
+      setTimeout(done, 480);
+    }, 150);
+  }
+};
+
 function renderMini() {
   const m = $("#mini"); if (!m) return;
   const p = S.player; m.textContent = "";
@@ -409,7 +613,7 @@ function errText(e) {
 async function play(uri, offset, shuffle, deviceId) {
   try {
     await Src().play(uri, offset, shuffle, deviceId || S.device || undefined);
-    closeSheet(); toast(shuffle ? "Shuffling…" : "Putting it on…", 1500);
+    S.pending = null; closeSheet(); toast(shuffle ? "Shuffling…" : "Putting it on…", 1500);
     setTimeout(refreshPlayer, 900); setTimeout(refreshPlayer, 2500);
   } catch (e) {
     if (e.status === 404) {
@@ -420,6 +624,7 @@ async function play(uri, offset, shuffle, deviceId) {
   }
 }
 async function chooseDevice(uri, offset, shuffle) {
+  S.pending = { uri, offset, shuffle };
   let devs = [];
   try { devs = await Src().devices(); } catch (e) { return toast(errText(e), 5000); }
   if (devs.length === 1) { S.device = devs[0].id; LS.set("device", S.device); return play(uri, offset, shuffle, devs[0].id); }
@@ -472,7 +677,7 @@ async function loadLibrary(force) {
   } catch (e) {
     if (e.status === 401 && !Auth.connected()) return renderSetup();
     toast(errText(e), 6000);
-    if (!S.albums.length) $("#rack").replaceChildren(h("div", { class: "empty" }, "Couldn't load your library: " + errText(e)));
+    if (!S.albums.length) { const em = $("#empty"); if (em) em.textContent = "Couldn't load your library: " + errText(e); }
   }
 }
 
@@ -492,23 +697,31 @@ function renderShell() {
   const search = h("input", { class: "search", type: "search", placeholder: "Find a CD…", value: S.filter,
     oninput: (e) => { S.filter = e.target.value; renderRack(); } });
   const tab = (key, label) => h("button", { class: S.tab === key ? "on" : "", onclick: () => { S.tab = key; LS.set("tab", key); renderShell(); } }, label);
-  app.append(
+  const track = h("div", { class: "track", id: "track" }, h("div", { class: "row", id: "row" }));
+  app.append(h("div", { class: "layout" },
     h("header", null,
-      h("div", { class: "row", style: "justify-content:space-between" },
+      h("div", { class: "row2", style: "justify-content:space-between" },
         h("h1", null, "CD RACK", S.demo ? h("small", null, "demo") : null),
         h("button", { class: "icon", "aria-label": "Menu", onclick: menu }, "☰")),
-      h("div", { class: "row" },
-        h("div", { class: "tabs row" }, tab("albums", "Albums"), tab("playlists", "Mixtapes")),
-        h("button", { class: "chip", onclick: luckyDip }, "🎲")),
-      h("div", { class: "row", style: "margin-top:8px" }, search),
-      h("div", { class: "az", id: "az" })),
-    h("main", { class: "rack", id: "rack" }),
-    h("div", { class: "mini", id: "mini" }));
+      h("div", { class: "row2" },
+        h("div", { class: "tabs row2" }, tab("albums", "Albums"), tab("playlists", "Mixtapes")),
+        h("button", { class: "chip", onclick: luckyDip }, "🎲"), search)),
+    h("div", { class: "stage", id: "stage", onclick: (e) => { if (e.target.id === "stage" || e.target.id === "hint") Showcase.dismiss(); } },
+      h("div", { class: "hint", id: "hint" }, "Swipe the shelf to flick through.", h("br"), "Hold a CD to pull it out."),
+      h("div", { class: "empty", id: "empty" }),
+      h("div", { class: "info", id: "info" })),
+    h("div", { class: "az", id: "az" }),
+    h("div", { class: "shelfwrap" }, track, h("div", { class: "plank" })),
+    h("div", { class: "mini", id: "mini" })));
+  Shelf.init(track);
   renderRack(); renderMini();
 }
 function luckyDip() {
-  const items = currentItems(); if (!items.length) return;
-  openCase(items[Math.floor(Math.random() * items.length)]);
+  const spines = document.querySelectorAll("#row .spine"); if (!spines.length) return;
+  const sp = spines[Math.floor(Math.random() * spines.length)];
+  Showcase.dismiss(true);
+  Shelf.scrollToEl(sp, false);
+  setTimeout(() => Showcase.pull(sp, true), 480);
 }
 
 function renderSetup(msg) {
@@ -547,7 +760,12 @@ async function boot() {
   clearInterval(pollTimer);
   pollTimer = setInterval(() => { if (document.visibilityState === "visible") refreshPlayer(); }, 8000);
 }
-document.addEventListener("visibilitychange", () => { if (document.visibilityState === "visible" && (S.demo || Auth.connected())) refreshPlayer(); });
+document.addEventListener("visibilitychange", () => {
+  if (document.visibilityState !== "visible" || !(S.demo || Auth.connected())) return;
+  refreshPlayer();
+  const p = S.pending;   // came back from waking Spotify: try the CD again automatically
+  if (p && $("#veil")) setTimeout(() => { if (S.pending === p) play(p.uri, p.offset, p.shuffle); }, 900);
+});
 boot();
 </script>
 </body>
